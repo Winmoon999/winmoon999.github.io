@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>pCloud 登入中繼頁 - VoxMind</title>
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    background: #f5f7fa;
+    color: #222;
+    text-align: center;
+    padding: 24px;
+    box-sizing: border-box;
+  }
+  .card {
+    max-width: 420px;
+  }
+  .spinner {
+    width: 36px; height: 36px;
+    border: 4px solid #d8dee6;
+    border-top-color: #2f80ed;
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  a.button {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 10px 20px;
+    background: #2f80ed;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+  }
+  p.small { color: #667; font-size: 13px; margin-top: 24px; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="spinner" id="spinner"></div>
+    <p id="status">正在把你導回 VoxMind App…</p>
+    <a class="button" id="manualLink" href="#" style="display:none;">手動開啟 App</a>
+    <p class="small" id="hint" style="display:none;">如果沒有自動跳轉，請點上方按鈕，或確認手機已安裝 VoxMind。</p>
+  </div>
+<script>
+(function () {
+  // pCloud登入完成後，會把access_token等資訊放在網址的fragment(#後面那段)導回這個頁面，
+  // 這個頁面唯一的工作就是把這段fragment原封不動接到VoxMind App的自訂scheme網址上，
+  // 再轉址過去，讓手機系統把使用者導回App。之所以需要這一層中繼頁，
+  // 是因為pCloud後台的Redirect URIs欄位只接受https網址，不接受App的自訂scheme
+  // (com.transcribeai.app://...)，所以後台登記這個https網址，實際導回App則靠這裡轉一手。
+  var hash = window.location.hash; // 例如 "#access_token=...&locationid=...&hostname=..."
+  var status = document.getElementById('status');
+  var spinner = document.getElementById('spinner');
+  var manualLink = document.getElementById('manualLink');
+  var hint = document.getElementById('hint');
+
+  if (!hash || hash.indexOf('access_token') === -1) {
+    spinner.style.display = 'none';
+    status.textContent = '沒有收到登入資訊，請回 VoxMind App 重新嘗試登入 pCloud。';
+    return;
+  }
+
+  var deepLink = 'com.transcribeai.app://pcloudauth' + hash;
+  manualLink.href = deepLink;
+
+  // 嘗試自動導回App
+  window.location.replace(deepLink);
+
+  // 如果1.2秒後畫面還在(代表系統沒有自動用App接住)，顯示手動按鈕
+  setTimeout(function () {
+    spinner.style.display = 'none';
+    status.textContent = '請點下方按鈕開啟 VoxMind App';
+    manualLink.style.display = 'inline-block';
+    hint.style.display = 'block';
+  }, 1200);
+})();
+</script>
+</body>
+</html>
