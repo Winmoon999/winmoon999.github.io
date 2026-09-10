@@ -250,6 +250,32 @@ section{padding-top:44px; scroll-margin-top:96px;}
   border-radius:100px; padding:5px 12px; font-size:0.84rem; font-weight:600;
 }
 
+/* ---- screenshot strips ---- */
+.shotgrid{
+  display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x proximity;
+  padding:6px 2px 12px; margin-top:10px;
+  -webkit-mask-image:linear-gradient(to right, black calc(100% - 24px), transparent 100%);
+  mask-image:linear-gradient(to right, black calc(100% - 24px), transparent 100%);
+}
+.shotgrid::-webkit-scrollbar{height:6px;}
+.shotgrid::-webkit-scrollbar-thumb{background:var(--border); border-radius:100px;}
+.shot{flex:none; width:148px; scroll-snap-align:start;}
+.shot img{
+  width:100%; display:block; border-radius:14px;
+  border:1px solid var(--border);
+  box-shadow:0 10px 24px -14px rgba(0,0,0,.35);
+}
+.shot .cap{
+  margin-top:9px; font-size:0.78rem; line-height:1.4; color:var(--text-muted);
+  display:flex; gap:7px; align-items:flex-start;
+}
+.shot .cap .n{
+  flex:none; width:18px; height:18px; margin-top:1px; border-radius:50%;
+  background:var(--accent-soft); color:var(--accent-ink);
+  font-family:"IBM Plex Mono",monospace; font-size:0.66rem; font-weight:700;
+  display:flex; align-items:center; justify-content:center;
+}
+
 hr.div{border:none; border-top:1px solid var(--border); margin:44px 0 0;}
 
 footer{
@@ -283,7 +309,7 @@ footer{
       <a class="nav-chip" href="#result">查看結果</a>
       <a class="nav-chip" href="#todos">待辦事項</a>
       <a class="nav-chip" href="#export">匯出分享</a>
-      <a class="nav-chip" href="#cloud">雲端備份</a>
+      <a class="nav-chip" href="#cloud">備份與還原</a>
       <a class="nav-chip" href="#settings">個人設定</a>
     </div>
   </div>
@@ -318,6 +344,30 @@ footer{
         <div>
           <div class="step-title">填好 API Key</div>
           <div class="step-body">點首頁右上角 <span class="ui">⚙ 設定</span> →「API Key 設定」，貼上你的 AI 服務金鑰。轉譯（把語音變文字）需要支援音訊的供應商，例如 Gemini；只做摘要整理的供應商（例如部分 OpenAI／Claude 方案）不能單獨用來轉譯。金鑰驗證成功會顯示「已驗證」。沒有金鑰的話，錄音跟匯入都會卡在「請先到設定頁填入所選供應商的 API Key」。</div>
+
+          <div class="shotgrid">
+            <div class="shot">
+              <img src="./img/guide-settings-entry.png" alt="首頁右上角齒輪圖示進入設定" loading="lazy">
+              <div class="cap"><span class="n">1</span><span>首頁右上角點 <span class="ui">⚙</span> 進入設定</span></div>
+            </div>
+            <div class="shot">
+              <img src="./img/guide-settings-menu.png" alt="設定選單裡的API Key設定項目" loading="lazy">
+              <div class="cap"><span class="n">2</span><span>選「API Key 設定」</span></div>
+            </div>
+            <div class="shot">
+              <img src="./img/guide-apikey-page.png" alt="API Key設定頁面，各供應商各一張卡片" loading="lazy">
+              <div class="cap"><span class="n">3</span><span>每家供應商各一張卡片，點「前往申請 Key」開瀏覽器申請</span></div>
+            </div>
+            <div class="shot">
+              <img src="./img/guide-aistudio-create.png" alt="Google AI Studio建立API key" loading="lazy">
+              <div class="cap"><span class="n">4</span><span>以 Gemini 為例：在 Google AI Studio 按「Create API key」</span></div>
+            </div>
+            <div class="shot">
+              <img src="./img/guide-aistudio-key.png" alt="複製產生好的API key" loading="lazy">
+              <div class="cap"><span class="n">5</span><span>建立完成，點複製圖示拿到金鑰</span></div>
+            </div>
+          </div>
+          <div class="step-body" style="margin-top:2px;">回到 App，把複製的金鑰貼進對應供應商的輸入框，按「驗證」確認能用，再按「儲存」。</div>
         </div>
       </li>
     </ol>
@@ -349,8 +399,16 @@ footer{
         <div><h3>一鍵還原</h3><div class="desc">把 Google Drive 上的備份一次抓回本機，已經存在的紀錄會自動略過，不會重複。</div></div>
       </div>
       <div class="legend-row">
+        <span class="legend-icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" stroke-width="1.8"/><path d="M8 4v5h8V4M8 20v-6h8v6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div><h3>本機打包備份</h3><div class="desc">把所有紀錄（含錄音檔）打包成一個 zip 檔案存在手機裡，不需要登入任何帳號。詳見第 8 節。</div></div>
+      </div>
+      <div class="legend-row">
+        <span class="legend-icon"><svg viewBox="0 0 24 24"><path d="M4 4v5h5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M4.5 9A8 8 0 1 1 6 16" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+        <div><h3>從本機備份檔還原</h3><div class="desc">選一個先前匯出的 zip 檔案，把裡面的紀錄還原回本機。</div></div>
+      </div>
+      <div class="legend-row">
         <span class="legend-icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke-width="1.8" stroke-linecap="round"/></svg></span>
-        <div><h3>新增</h3><div class="desc">開啟「新錄音」或「匯入音檔」，也可以從這裡直接觸發「從 Google Drive 還原」。</div></div>
+        <div><h3>新增</h3><div class="desc">開啟「新錄音」或「匯入音檔」，也可以從這裡直接觸發「從 Google Drive／pCloud 還原」。</div></div>
       </div>
     </div>
 
@@ -379,6 +437,21 @@ footer{
       <li><div><div class="step-title">開始錄音</div><div class="step-body">錄音中可以暫停、繼續，關螢幕也不會中斷。偵測到藍芽耳機會問你要不要用耳機麥克風收音；耳機中途斷線會自動切回手機麥克風，不會中斷錄音。</div></div></li>
       <li><div><div class="step-title">停止並等待處理</div><div class="step-body">按停止後會跑兩個步驟：先轉譯、分辨說話者、翻譯，再整理摘要跟心智圖。處理中可以先離開，回首頁看其他紀錄，等等再回來看結果。</div></div></li>
     </ol>
+
+    <div class="shotgrid">
+      <div class="shot">
+        <img src="./img/guide-record-setup.png" alt="新錄音設定畫面：供應商、語言、情境範本" loading="lazy">
+        <div class="cap"><span class="n">•</span><span>設定好轉譯/摘要供應商、語言、情境範本後，點麥克風開始收音</span></div>
+      </div>
+      <div class="shot">
+        <img src="./img/guide-record-bluetooth.png" alt="偵測到藍芽耳機的詢問對話框" loading="lazy">
+        <div class="cap"><span class="n">•</span><span>偵測到藍芽耳機會先問一次，選「用手機麥克風」或「使用藍芽耳機」</span></div>
+      </div>
+      <div class="shot">
+        <img src="./img/guide-mic-disclosure.png" alt="麥克風與AI資料處理告知對話框" loading="lazy">
+        <div class="cap"><span class="n">•</span><span>第一次錄音前會先看到這則告知，按「了解，開始錄音」才會真的開始收音</span></div>
+      </div>
+    </div>
 
     <div class="callout warn" style="margin-top:16px;">
       <svg viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01" stroke-width="1.9" stroke-linecap="round"/><path d="M10.3 3.9L2.7 18a1.8 1.8 0 0 0 1.6 2.7h15.4a1.8 1.8 0 0 0 1.6-2.7L13.7 3.9a1.8 1.8 0 0 0-3.4 0z" stroke-width="1.8" stroke-linejoin="round"/></svg>
@@ -453,19 +526,25 @@ footer{
   </section>
 
   <section id="cloud">
-    <div class="sec-head"><span class="sec-num">08</span><h2>備份到 Google Drive</h2></div>
-    <p class="sec-intro">兩種備份方式，擇一或搭配使用：</p>
-    <div class="callout warn" style="margin-bottom:14px;">
-      <svg viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01" stroke-width="1.9" stroke-linecap="round"/><path d="M10.3 3.9L2.7 18a1.8 1.8 0 0 0 1.6 2.7h15.4a1.8 1.8 0 0 0 1.6-2.7L13.7 3.9a1.8 1.8 0 0 0-3.4 0z" stroke-width="1.8" stroke-linejoin="round"/></svg>
-      <div><b>功能整備中</b>Google 雲端備份／還原目前偶爾會遇到授權失敗（跳出「已取消 Google 帳號授權」），這是已知問題、正在排查中，並非操作錯誤。遇到的話請稍後再試一次，或先使用「匯出 PDF 並分享」保留內容。</div>
+    <div class="sec-head"><span class="sec-num">08</span><h2>備份與還原</h2></div>
+    <p class="sec-intro">三種備份方式，擇一或搭配使用都可以，資料不會互相衝突。</p>
+
+    <div class="card">
+      <h3>本機打包備份／還原（不需要任何帳號）</h3>
+      <div class="desc">首頁上方的「儲存」與「還原」圖示：把所有紀錄（逐字稿、摘要、待辦事項＋原始錄音檔）打包成一個 zip 檔案，讓你自己選存在手機的哪個位置；還原時一樣選那個 zip 檔案即可。不用登入任何帳號、不需要網路，最適合先備一份保底，卸載 App 前務必記得做一次。</div>
     </div>
     <div class="card">
-      <h3>單筆備份</h3>
-      <div class="desc">在結果頁「更多選項」裡選「備份到 Google Drive」，只上傳這一筆紀錄。</div>
+      <h3>Google Drive 備份／還原</h3>
+      <div class="desc">首頁上方雲朵圖示，一次處理所有紀錄，也可以在結果頁「更多選項」裡單筆備份。第一次使用會跳出 Google 帳號登入畫面，選帳號、按允許即可；已經備份過的標題會自動略過，不會重複上傳或還原出兩筆一樣的東西。</div>
     </div>
     <div class="card">
-      <h3>一鍵備份 / 一鍵還原</h3>
-      <div class="desc">首頁上方雲朵圖示，一次處理所有紀錄。第一次使用會跳出 Google 帳號登入畫面，選帳號、按允許即可；已經備份過的標題會自動略過，不會重複上傳或還原出兩筆一樣的東西。</div>
+      <h3>pCloud 備份／還原</h3>
+      <div class="desc">先到「設定」裡的 pCloud 卡片登入一次（跳出 pCloud 官方登入頁授權），登入後首頁會多出對應的一鍵備份／還原圖示，用法跟 Google Drive 一樣。App 只會存取專屬於自己的私人資料夾，不會碰到你 pCloud 帳號裡其他檔案。</div>
+    </div>
+
+    <div class="callout tip" style="margin-top:14px;">
+      <svg viewBox="0 0 24 24"><path d="M9 11l2 2 4-4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke-width="1.8"/></svg>
+      <div><b>小提醒</b>雲端帳號登入偶爾會因為網路或授權狀態不穩定而失敗，重試一次通常就能解決；真的一直失敗的話，先用「本機打包備份」保底最快，不用等雲端那邊排除問題。</div>
     </div>
   </section>
 
@@ -475,6 +554,7 @@ footer{
     <div class="tag-grid">
       <div class="tag"><div class="name"><span class="dot"></span>語言 Language</div><div class="desc">切換 App 介面顯示語言：繁體中文／英文／日文／韓文。</div></div>
       <div class="tag"><div class="name"><span class="dot"></span>外觀</div><div class="desc">深色／淺色／跟隨系統，三種畫面色調可選。</div></div>
+      <div class="tag"><div class="name"><span class="dot"></span>pCloud 登入</div><div class="desc">API Key 設定頁最上方，登入一次即可開始使用 pCloud 備份／還原，詳見第 8 節。</div></div>
       <div class="tag"><div class="name"><span class="dot"></span>關於</div><div class="desc">版本號、發行日期、隱私權政策與服務條款連結。</div></div>
       <div class="tag"><div class="name"><span class="dot"></span>桌面小工具</div><div class="desc">加到桌面後點一下，直接用上次的設定開始錄音，不用先開 App。</div></div>
     </div>
