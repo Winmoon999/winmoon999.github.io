@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>pCloud 登入中繼頁 - VoxMind</title>
+<title>pCloud 登入中繼頁 - TranSynapse</title>
 <style>
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
@@ -46,14 +46,14 @@
 <body>
   <div class="card">
     <div class="spinner" id="spinner"></div>
-    <p id="status">正在把你導回 VoxMind App…</p>
+    <p id="status">正在把你導回 TranSynapse App…</p>
     <a class="button" id="manualLink" href="#" style="display:none;">手動開啟 App</a>
-    <p class="small" id="hint" style="display:none;">如果沒有自動跳轉，請點上方按鈕，或確認手機已安裝 VoxMind。</p>
+    <p class="small" id="hint" style="display:none;">如果沒有自動跳轉，請點上方按鈕，或確認手機已安裝 TranSynapse。</p>
   </div>
 <script>
 (function () {
   // pCloud登入完成後，會把access_token等資訊放在網址的fragment(#後面那段)導回這個頁面，
-  // 這個頁面唯一的工作就是把這段fragment原封不動接到VoxMind App的自訂scheme網址上，
+  // 這個頁面唯一的工作就是把這段fragment原封不動接到TranSynapse App的自訂scheme網址上，
   // 再轉址過去，讓手機系統把使用者導回App。之所以需要這一層中繼頁，
   // 是因為pCloud後台的Redirect URIs欄位只接受https網址，不接受App的自訂scheme
   // (com.transcribeai.app://...)，所以後台登記這個https網址，實際導回App則靠這裡轉一手。
@@ -65,7 +65,7 @@
 
   if (!hash || hash.indexOf('access_token') === -1) {
     spinner.style.display = 'none';
-    status.textContent = '沒有收到登入資訊，請回 VoxMind App 重新嘗試登入 pCloud。';
+    status.textContent = '沒有收到登入資訊，請回 TranSynapse App 重新嘗試登入 pCloud。';
     return;
   }
 
@@ -78,7 +78,7 @@
   // 如果1.2秒後畫面還在(代表系統沒有自動用App接住)，顯示手動按鈕
   setTimeout(function () {
     spinner.style.display = 'none';
-    status.textContent = '請點下方按鈕開啟 VoxMind App';
+    status.textContent = '請點下方按鈕開啟 TranSynapse App';
     manualLink.style.display = 'inline-block';
     hint.style.display = 'block';
   }, 1200);
