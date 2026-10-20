@@ -112,10 +112,10 @@
 <!-- 中文版區塊 -->
 <div id="lang-zh">
   <h1>隱私權政策</h1>
-  <p class="updated">適用產品：TranSynapse - AI翻譯摘要與心智圖 ｜ 最後更新日期：2026年10月16日</p>
+  <p class="updated">適用產品：TranSynapse - AI翻譯摘要與心智圖 ｜ 最後更新日期：2026年10月20日</p>
 
   <p>
-  感謝您使用「TranSynapse - AI翻譯摘要與心智圖」（以下簡稱「本應用程式」）。本隱私權政策說明本應用程式在您使用錄音、語音轉逐字稿、AI翻譯與摘要、心智圖產生、多格式匯出，以及雲端備份／還原等功能時，如何處理您的資料。使用本應用程式，即表示您已閱讀並同意本政策的內容。
+  感謝您使用「TranSynapse - AI翻譯摘要與心智圖」（以下簡稱「本應用程式」）。本隱私權政策說明本應用程式在您使用錄音、語音轉逐字稿、AI翻譯與摘要、心智圖產生、多格式匯出、雲端備份／還原，以及應用程式內廣告等功能時，如何處理您的資料。使用本應用程式，即表示您已閱讀並同意本政策的內容。
   </p>
   <div class="warn">
   <b>非官方關聯聲明：</b>本應用程式為獨立開發者所開發、營運之第三方工具，<b>並非 Google、OpenAI 或 Anthropic 之官方產品、關係企業、授權經銷商或合作夥伴</b>，亦未經上述任一公司審核、贊助、認證或背書。「Gemini」、「Google Drive」、「OpenAI」、「Anthropic」、「Claude」等名稱與商標均為其各自所有者所有，本應用程式提及上述名稱僅為說明技術相容性，不代表任何官方合作或背書關係。
@@ -153,11 +153,26 @@
   當您使用雲端備份／還原功能時，資料會直接在您的裝置與您自己的雲端帳號之間傳輸，開發者無法存取、也無權存取您的個人雲端空間內容。備份資料會統一存放在您雲端硬碟裡一個固定名稱的資料夾中，方便您自行管理。
   </div>
 
-  <h2>四、本應用程式使用的權限</h2>
+  <h2>四、應用程式內廣告（Google AdMob）</h2>
+  <p>
+  本應用程式為「免費＋廣告」模式，使用 Google AdMob 在部分畫面（首頁錄音列表下方、錄音畫面、處理進度畫面）顯示橫幅廣告，以此作為營運資金來源之一。AdMob 是由 Google 提供的第三方廣告服務，運作方式與第二節所述的 AI 服務商類似：本應用程式本身不會另外收集或儲存任何用於廣告投放的資料。
+  </p>
+  <div class="quote">
+  為了顯示廣告，Google AdMob 可能會收集或使用以下資訊：您裝置的廣告識別碼（Advertising ID）、概略的裝置與應用程式使用資訊，以及（在您同意個人化廣告的情況下）用於投放更符合您興趣廣告的相關資訊。這些資訊由 Google 依其自身的
+  <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">隱私權政策</a>
+  與
+  <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">廣告技術使用說明</a>
+  處理，不受本應用程式開發者控制。
+  </div>
+  <p>
+  依歐盟／英國（GDPR）及美國部分州法規要求，若您所在地區適用這些法規，本應用程式會在您第一次使用時，透過 Google 提供的標準「使用者訊息平台（User Messaging Platform）」同意畫面，詢問您是否同意個人化廣告；若您不在適用地區，或您已完成過一次選擇，則不會重複顯示。不論您是否同意個人化廣告，本應用程式都會繼續顯示廣告（僅在個人化與非個人化之間有差異），這是維持本應用程式免費提供的必要營運方式。您也可以隨時前往您裝置的「Google設定」中調整廣告個人化偏好。
+  </p>
+
+  <h2>五、本應用程式使用的權限</h2>
   <p>本應用程式僅申請功能運作所必要的權限，並遵循最小權限原則：</p>
   <ul>
     <li><b>麥克風（RECORD_AUDIO）</b>：用於錄製您的語音內容。首次錄音前，本應用程式會先顯示自訂的告知畫面，說明錄音用途與資料流向，待您確認後才會請求系統權限。</li>
-    <li><b>網路存取（INTERNET／ACCESS_NETWORK_STATE）</b>：用於呼叫 AI 服務商與雲端備份服務的 API。</li>
+    <li><b>網路存取（INTERNET／ACCESS_NETWORK_STATE）</b>：用於呼叫 AI 服務商、雲端備份服務與廣告服務的 API。</li>
     <li><b>前景服務（FOREGROUND_SERVICE／FOREGROUND_SERVICE_MICROPHONE）</b>：用於在錄音過程中維持穩定運作，並於系統通知列顯示錄音進行中的狀態。</li>
     <li><b>通知（POST_NOTIFICATIONS）</b>：用於顯示錄音與處理進度的通知。</li>
     <li><b>藍牙（BLUETOOTH／BLUETOOTH_CONNECT）</b>：用於偵測與連接藍牙耳機麥克風。</li>
@@ -169,22 +184,22 @@
   本應用程式匯入音檔與匯出 PDF／Word／Draw.io 檔案時，採用 Android 系統的檔案存取框架（Storage Access Framework）與分享機制，不會申請可存取您手機內所有檔案的廣泛儲存權限。
   </p>
 
-  <h2>五、資料保存與刪除</h2>
+  <h2>六、資料保存與刪除</h2>
   <p>
   您的錄音、逐字稿與相關紀錄，預設僅儲存於您的裝置本機。您可以隨時透過本應用程式內的刪除功能移除個別紀錄，或直接解除安裝本應用程式，即可完整移除本應用程式在您裝置上儲存的所有資料。若您曾使用雲端備份功能，備份檔案會保留在您自己的雲端帳號中，您可自行前往該雲端服務進行刪除。
   </p>
 
-  <h2>六、兒童隱私</h2>
+  <h2>七、兒童隱私</h2>
   <p>
-  本應用程式並非針對兒童設計，也不會刻意收集兒童的個人資料。
+  本應用程式並非針對兒童設計，也不會刻意收集兒童的個人資料，亦未將廣告設定為以兒童為導向。
   </p>
 
-  <h2>七、政策異動</h2>
+  <h2>八、政策異動</h2>
   <p>
   若本隱私權政策的內容有所異動，我們會更新本頁面上方的「最後更新日期」。建議您於使用本應用程式前，不定期回來查閱本頁面的最新內容。
   </p>
 
-  <h2>八、聯絡我們</h2>
+  <h2>九、聯絡我們</h2>
   <p>
   若您對本隱私權政策或本應用程式的資料處理方式有任何疑問，歡迎透過以下方式與我們聯絡：<br>
   Email：yejh00290@gmail.com
@@ -198,10 +213,10 @@
 <!-- 英文版區塊 -->
 <div id="lang-en" style="display: none;">
   <h1>Privacy Policy</h1>
-  <p class="updated">Applicable Product: TranSynapse - AI Translation, Summary & Mind Map | Last Updated: October 16, 2026</p>
+  <p class="updated">Applicable Product: TranSynapse - AI Translation, Summary & Mind Map | Last Updated: October 20, 2026</p>
 
   <p>
-  Thank you for using "TranSynapse - AI Translation, Summary & Mind Map" (hereinafter referred to as "this Application"). This Privacy Policy explains how this Application handles your data when you use features such as audio recording, speech-to-text transcription, AI translation and summarization, mind map generation, multi-format export, and cloud backup/restore. By using this Application, you acknowledge that you have read and agreed to the contents of this policy.
+  Thank you for using "TranSynapse - AI Translation, Summary & Mind Map" (hereinafter referred to as "this Application"). This Privacy Policy explains how this Application handles your data when you use features such as audio recording, speech-to-text transcription, AI translation and summarization, mind map generation, multi-format export, cloud backup/restore, and in-app advertising. By using this Application, you acknowledge that you have read and agreed to the contents of this policy.
   </p>
   <div class="warn">
   <b>No Official Affiliation:</b> This Application is an independent third-party tool built and operated by an independent developer. It is <b>not an official product of, affiliated with, an authorized reseller of, or a partner of Google, OpenAI, or Anthropic</b>, and has not been reviewed, sponsored, certified, or endorsed by any of them. Names and trademarks such as "Gemini," "Google Drive," "OpenAI," "Anthropic," and "Claude" belong to their respective owners; references to these names describe technical compatibility only and do not imply any official partnership or endorsement.
